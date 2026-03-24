@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
   categories,
+  articles,
   getArticlesByCategory,
   getArticleById,
   Article,
@@ -15,6 +16,17 @@ import { ChevronRight, ArrowLeft } from 'lucide-react';
 export default function KnowledgeHubPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null);
+  
+  // Ensure articles is available
+  if (!articles || articles.length === 0) {
+    return (
+      <MainLayout>
+        <div className="text-center py-12">
+          <h1 className="text-2xl font-bold text-foreground">No Articles Available</h1>
+        </div>
+      </MainLayout>
+    );
+  }
 
   const article = selectedArticle ? getArticleById(selectedArticle) : null;
   const categoryArticles = selectedCategory ? getArticlesByCategory(selectedCategory) : [];
