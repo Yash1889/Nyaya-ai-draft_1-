@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
 import {
   LayoutDashboard,
   MessageCircle,
@@ -13,17 +15,23 @@ import {
   LogOut,
   Menu,
   X,
+  AlertCircle,
+  BarChart3,
+  Calendar,
+  Briefcase,
 } from 'lucide-react';
-import { useAuth } from '@/lib/auth-context';
-import { useState } from 'react';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/assistant', label: 'AI Assistant', icon: MessageCircle },
   { href: '/documents', label: 'Documents', icon: FileText },
+  { href: '/fir-guidance', label: 'FIR Guidance', icon: AlertCircle },
+  { href: '/outcome-simulator', label: 'Outcome Simulator', icon: BarChart3 },
+  { href: '/case-tracker', label: 'Case Tracker', icon: Calendar },
+  { href: '/court-agent-dashboard', label: 'Court Agent', icon: Briefcase },
   { href: '/lawyers', label: 'Find Lawyer', icon: Users },
   { href: '/knowledge-hub', label: 'Knowledge Hub', icon: Book },
-  { href: '/women-safety', label: 'Women Safety', icon: Shield },
+  { href: '/women-safety-enhanced', label: 'Women Safety', icon: Shield },
   { href: '/profile', label: 'Profile', icon: User },
 ];
 
@@ -49,7 +57,7 @@ export function Sidebar() {
         }`}
       >
         <div className="p-6 border-b border-sidebar-border">
-          <h1 className="text-2xl font-bold text-sidebar-primary">NyayaAI</h1>
+          <h1 className="text-2xl font-bold text-sidebar-primary">Nyaya Setu</h1>
           <p className="text-xs text-sidebar-foreground/70 mt-1">Legal Assistance Platform</p>
         </div>
 

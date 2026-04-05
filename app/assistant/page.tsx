@@ -5,7 +5,8 @@ import { MainLayout } from '@/components/layout/main-layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { Send, AlertCircle, CheckCircle, Eye } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { getScenarioResponse, getDefaultResponse } from '@/lib/legal-scenarios';
 
 interface Message {
@@ -29,6 +30,7 @@ export default function AssistantPage() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -86,13 +88,36 @@ export default function AssistantPage() {
   return (
     <MainLayout>
       <div className="max-w-4xl mx-auto h-[calc(100vh-200px)] flex flex-col">
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-foreground">AI Legal Assistant</h1>
-          <p className="text-muted-foreground mt-2">
-            Get instant guidance on common legal issues
-          </p>
+        {/* Header with Anonymous Toggle */}
+        <div className="mb-6 flex items-start justify-between flex-col md:flex-row gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">AI Legal Assistant</h1>
+            <p className="text-muted-foreground mt-2">
+              Get instant guidance on common legal issues
+            </p>
+          </div>
+          <button
+            onClick={() => setIsAnonymous(!isAnonymous)}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 flex-shrink-0 ${
+              isAnonymous
+                ? 'bg-accent text-primary'
+                : 'bg-secondary/10 text-secondary hover:bg-secondary/20'
+            }`}
+          >
+            <Eye size={18} />
+            {isAnonymous ? 'Anonymous Mode ON' : 'Ask Anonymously'}
+          </button>
         </div>
+
+        {/* Anonymous Mode Disclaimer */}
+        {isAnonymous && (
+          <Card className="mb-6 p-4 bg-blue-50 border-blue-200">
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="bg-blue-100 text-blue-900">Anonymous Mode Active</Badge>
+              <p className="text-sm text-blue-900">This is a private, anonymous session. No data is stored.</p>
+            </div>
+          </Card>
+        )}
 
         {/* Chat Container */}
         <Card className="flex-1 bg-card border-border flex flex-col overflow-hidden">

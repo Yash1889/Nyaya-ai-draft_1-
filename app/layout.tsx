@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AuthProvider } from '@/lib/auth-context'
+import { UserModeProvider } from '@/lib/user-mode-context'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'NyayaAI - AI Legal Assistance Platform',
+  title: 'Nyaya Setu - AI Legal Assistance Platform',
   description: 'Access legal knowledge and AI-powered assistance for justice system education and support',
   generator: 'v0.app',
   icons: {
@@ -39,7 +40,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         <AuthProvider>
-          {children}
+          <UserModeProvider>
+            {children}
+          </UserModeProvider>
         </AuthProvider>
         <Analytics />
       </body>

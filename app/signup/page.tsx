@@ -49,7 +49,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="bg-card rounded-lg shadow-lg p-8 border border-border">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-primary mb-2">NyayaAI</h1>
+            <h1 className="text-3xl font-bold text-primary mb-2">Nyaya Setu</h1>
             <p className="text-muted-foreground text-sm">Create your account</p>
           </div>
 
