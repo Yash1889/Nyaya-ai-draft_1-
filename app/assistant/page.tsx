@@ -5,7 +5,7 @@ import { MainLayout } from '@/components/layout/main-layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Send, AlertCircle, CheckCircle, Incognito } from 'lucide-react';
+import { Send, AlertCircle, CheckCircle, Eye } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { getScenarioResponse, getDefaultResponse } from '@/lib/legal-scenarios';
 
@@ -104,7 +104,7 @@ export default function AssistantPage() {
                 : 'bg-secondary/10 text-secondary hover:bg-secondary/20'
             }`}
           >
-            <Incognito size={18} />
+            <Eye size={18} />
             {isAnonymous ? 'Anonymous Mode ON' : 'Ask Anonymously'}
           </button>
         </div>

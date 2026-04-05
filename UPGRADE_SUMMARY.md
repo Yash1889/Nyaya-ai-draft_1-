@@ -1,7 +1,7 @@
-# NyayaAI Platform - Major Upgrade Summary
+# Nyaya Setu Platform - Major Upgrade Summary
 
 ## Overview
-The NyayaAI platform has been upgraded from a basic legal assistant UI into a **research-backed, multi-user legal ecosystem platform** with advanced features while maintaining the clean, professional design.
+The Nyaya Setu platform has been upgraded from a basic legal assistant UI into a **research-backed, multi-user legal ecosystem platform** with advanced features while maintaining the clean, professional design.
 
 ---
 

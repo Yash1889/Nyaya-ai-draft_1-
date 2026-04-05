@@ -161,7 +161,7 @@ export default function DashboardPage() {
             <div>
               <h2 className="text-lg font-semibold text-foreground mb-2">Select Your Mode</h2>
               <p className="text-sm text-muted-foreground">
-                Choose how you want to use NyayaAI
+                Choose how you want to use Nyaya Setu
               </p>
             </div>
             <div className="flex gap-3 flex-wrap justify-end">

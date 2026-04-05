@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="text-primary font-bold text-2xl mb-2">NyayaAI</div>
+        <div className="text-primary font-bold text-2xl mb-2">Nyaya Setu</div>
         <p className="text-muted-foreground">Loading...</p>
       </div>
     </div>

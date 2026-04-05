@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'NyayaAI - AI Legal Assistance Platform',
+  title: 'Nyaya Setu - AI Legal Assistance Platform',
   description: 'Access legal knowledge and AI-powered assistance for justice system education and support',
   generator: 'v0.app',
   icons: {

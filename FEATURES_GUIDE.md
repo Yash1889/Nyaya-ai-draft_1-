@@ -1,4 +1,4 @@
-# NyayaAI - Complete Features Guide
+# Nyaya Setu - Complete Features Guide
 
 ## 🚀 Quick Start
 

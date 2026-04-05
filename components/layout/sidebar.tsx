@@ -57,7 +57,7 @@ export function Sidebar() {
         }`}
       >
         <div className="p-6 border-b border-sidebar-border">
-          <h1 className="text-2xl font-bold text-sidebar-primary">NyayaAI</h1>
+          <h1 className="text-2xl font-bold text-sidebar-primary">Nyaya Setu</h1>
           <p className="text-xs text-sidebar-foreground/70 mt-1">Legal Assistance Platform</p>
         </div>
 
