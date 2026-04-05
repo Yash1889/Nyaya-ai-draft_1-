@@ -194,14 +194,7 @@ export default function WomenSafetyEnhancedPage() {
                   {womenRights.map((right, index) => (
                     <Card key={index} className="p-6 bg-card border-border">
                       <h3 className="font-semibold text-foreground mb-3">{right.title}</h3>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        {right.points.map((point, pIndex) => (
-                          <li key={pIndex} className="flex gap-2">
-                            <span className="text-accent font-bold">•</span>
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-sm text-muted-foreground">{right.description}</p>
                     </Card>
                   ))}
                 </div>
