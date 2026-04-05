@@ -1,9 +1,11 @@
 'use client';
 
 import { useAuth } from '@/lib/auth-context';
+import { useUserMode } from '@/lib/user-mode-context';
 import { MainLayout } from '@/components/layout/main-layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import {
   MessageCircle,
   FileText,
@@ -11,6 +13,12 @@ import {
   TrendingUp,
   CheckCircle,
   Clock,
+  BookOpen,
+  AlertCircle,
+  BarChart3,
+  Calendar,
+  Shield,
+  Briefcase,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -35,7 +43,7 @@ const stats = [
   },
 ];
 
-const quickAccess = [
+const citizenQuickAccess = [
   {
     title: 'Ask AI Assistant',
     description: 'Get immediate legal guidance for common issues',
@@ -57,10 +65,80 @@ const quickAccess = [
     icon: Users,
     color: 'bg-secondary/10 text-secondary',
   },
+  {
+    title: 'FIR Guidance',
+    description: 'Step-by-step guide to file a complaint or FIR',
+    href: '/fir-guidance',
+    icon: AlertCircle,
+    color: 'bg-red-500/10 text-red-600',
+  },
+  {
+    title: 'Case Outcome Simulator',
+    description: 'Predict possible outcomes based on your case details',
+    href: '/outcome-simulator',
+    icon: BarChart3,
+    color: 'bg-blue-500/10 text-blue-600',
+  },
+  {
+    title: 'Track Cases',
+    description: 'Monitor your legal cases and next hearing dates',
+    href: '/case-tracker',
+    icon: Calendar,
+    color: 'bg-green-500/10 text-green-600',
+  },
+];
+
+const courtAgentQuickAccess = [
+  {
+    title: 'Bulk Document Generator',
+    description: 'Generate multiple legal documents quickly',
+    href: '/documents',
+    icon: FileText,
+    color: 'bg-accent/10 text-accent',
+  },
+  {
+    title: 'Court Agent Dashboard',
+    description: 'Manage your clients and cases',
+    href: '/court-agent-dashboard',
+    icon: Briefcase,
+    color: 'bg-primary/10 text-primary',
+  },
+  {
+    title: 'Court Process Guide',
+    description: 'Learn procedural steps and requirements',
+    href: '/knowledge-hub',
+    icon: BookOpen,
+    color: 'bg-secondary/10 text-secondary',
+  },
+];
+
+const lawyerQuickAccess = [
+  {
+    title: 'My Profile',
+    description: 'Manage your lawyer profile',
+    href: '/profile',
+    icon: Users,
+    color: 'bg-primary/10 text-primary',
+  },
+  {
+    title: 'Case Management',
+    description: 'View and manage your cases',
+    href: '/case-tracker',
+    icon: Briefcase,
+    color: 'bg-accent/10 text-accent',
+  },
+  {
+    title: 'Document Templates',
+    description: 'Access legal document templates',
+    href: '/documents',
+    icon: FileText,
+    color: 'bg-secondary/10 text-secondary',
+  },
 ];
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const { currentMode, setMode } = useUserMode();
 
   return (
     <MainLayout>
@@ -76,6 +154,41 @@ export default function DashboardPage() {
             </p>
           </div>
         </div>
+
+        {/* User Mode Selection */}
+        <Card className="p-6 bg-primary/5 border-accent/30">
+          <div className="flex items-center justify-between flex-col md:flex-row gap-6">
+            <div>
+              <h2 className="text-lg font-semibold text-foreground mb-2">Select Your Mode</h2>
+              <p className="text-sm text-muted-foreground">
+                Choose how you want to use NyayaAI
+              </p>
+            </div>
+            <div className="flex gap-3 flex-wrap justify-end">
+              <Button
+                variant={currentMode === 'citizen' ? 'default' : 'outline'}
+                onClick={() => setMode('citizen')}
+                className="text-sm"
+              >
+                Citizen Mode
+              </Button>
+              <Button
+                variant={currentMode === 'court-agent' ? 'default' : 'outline'}
+                onClick={() => setMode('court-agent')}
+                className="text-sm"
+              >
+                Court Agent Mode
+              </Button>
+              <Button
+                variant={currentMode === 'lawyer' ? 'default' : 'outline'}
+                onClick={() => setMode('lawyer')}
+                className="text-sm"
+              >
+                Lawyer Mode
+              </Button>
+            </div>
+          </div>
+        </Card>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -101,11 +214,16 @@ export default function DashboardPage() {
           })}
         </div>
 
-        {/* Quick Access */}
+        {/* Quick Access - Mode Specific */}
         <div>
-          <h2 className="text-xl font-semibold text-foreground mb-4">Quick Access</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-xl font-semibold text-foreground">Quick Access</h2>
+            <Badge variant="outline" className="capitalize">
+              {currentMode === 'court-agent' ? 'Court Agent' : currentMode}
+            </Badge>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {quickAccess.map((item, index) => {
+            {(currentMode === 'citizen' ? citizenQuickAccess : currentMode === 'court-agent' ? courtAgentQuickAccess : lawyerQuickAccess).map((item, index) => {
               const Icon = item.icon;
               return (
                 <Link key={index} href={item.href}>
