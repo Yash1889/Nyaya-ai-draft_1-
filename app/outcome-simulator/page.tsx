@@ -101,7 +101,7 @@ const outcomeDatabase: Record<string, Record<string, Record<string, any>>> = {
   },
 };
 
-export default function OutcomeSim ulatorPage() {
+export default function OutcomeSimulatorPage() {
   const [caseType, setCaseType] = useState('');
   const [severity, setSeverity] = useState('');
   const [evidence, setEvidence] = useState('');
